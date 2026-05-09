@@ -1,0 +1,66 @@
+{
+  "middleware": "JWTAuthMiddleware",
+  "description": "Main authentication gatekeeper that validates JWT tokens and user status before reaching protected endpoints.",
+  "success": [
+    {
+      "outcome": "NEXT_MIDDLEWARE_OR_VIEW",
+      "_developerHint": "the request pass the middelware only when the token is valid, the user exists in the DB, and the user account is active. The user object is attached to the request."
+    }
+  ],
+  "errors": [
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      },
+      "_developerHint": "Returned when the Authorization header is missing or empty."
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      },
+      "_developerHint": "Returned when the JWT signature is invalid or the token format is incorrect. Also returned if the user ID in the payload does not exist in the database."
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      },
+      "_developerHint": "Returned when the 'exp' claim in the JWT has passed."
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "AUTH.USER_INACTIVE",
+        "message": "Access denied."
+      },
+      "_developerHint": "Returned when the user record is found but the 'is_active' flag is false."
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      },
+      "_developerHint": "Returned when the database query fails due to connection issues or external service downtime."
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-03-27T14:37:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "A catch-all error for unexpected server-side exceptions during the validation process."
+    }
+  ]
+}

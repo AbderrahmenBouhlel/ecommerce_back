@@ -1,0 +1,2 @@
+from .deactivate_category_request import DeactivateCategoryRequestDTO
+from .deactivate_category_response import DeactivateCategoryResponseDTO

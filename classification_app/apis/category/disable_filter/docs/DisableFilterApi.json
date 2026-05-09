@@ -1,0 +1,107 @@
+{
+    "endpoint": "api/v1/admin/categories/{categoryId}/filters/{filterId}/disable",
+    "method": "DELETE",
+    "pathParams": {
+        "categoryId": "long",
+        "filterId": "long"
+    },
+    "success": [
+        {
+            "status": 200,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "CATEGORY_FILTER.REMOVED",
+                "message": "Filter removed from category successfully.",
+                "data": {
+                    "categoryId": "long",
+                    "filterId": "long",
+                    "affectedProductsCount": "number"
+                }
+            },
+            "_developerHint": "Filter-category association removed and all related product-filter-values associations deleted."
+        }
+    ],
+    "errors": [
+        {
+            "status": 400,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "REQUEST.INVALID",
+                "message": "Invalid request parameters."
+            }
+        },
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.MISSING_TOKEN",
+                "message": "Authentication token is required."
+            }
+        },
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.EXPIRED_TOKEN",
+                "message": "Authentication token has expired."
+            }
+        },
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.INVALID_TOKEN",
+                "message": "Invalid authentication token."
+            }
+        },
+        {
+            "status": 403,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "AUTH.UNAUTHORIZED_ACTION",
+                "message": "You are not allowed to perform this action."
+            }
+        },
+        {
+            "status": 404,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "CATEGORY.NOT_FOUND",
+                "message": "Category not found."
+            }
+        },
+        {
+            "status": 404,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "FILTER.NOT_FOUND",
+                "message": "Filter not found."
+            }
+        },
+        {
+            "status": 409,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "CATEGORY_FILTER.NOT_ASSOCIATED",
+                "message": "This filter is not associated with the category."
+            },
+            "_developerHint": "Prevents removing a category-filter link that does not exist."
+        },
+        {
+            "status": 503,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "SYSTEM.SERVICE_UNAVAILABLE",
+                "message": "Service temporarily unavailable."
+            }
+        },
+        {
+            "status": 500,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "SYSTEM.INTERNAL_ERROR",
+                "message": "Internal server error."
+            }
+        }
+    ]
+}

@@ -1,0 +1,85 @@
+{
+  "endpoint": "api/v1/auth/users",
+  "method": "POST",
+  "body": {
+    "email": "string",
+    "password": "string",
+    "name": "string"
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.SIGNUP_SUCCESS",
+        "message": "Account created successfully.",
+        "data": {
+            "token": "string",
+            "userProfile": {
+              "id": "long",
+              "email": "string",
+              "name": "string",
+              "role": "string"
+            }
+        }
+      },
+      "_developerHint": "User is immediately active and authenticated after signup. Token is issued directly."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid signup request. Check required fields and data formats."
+      },
+      "_developerHint": "Missing fields or malformed request body."
+    },
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "VALIDATION.INVALID_EMAIL",
+        "message": "Email format is invalid."
+      },
+      "_developerHint": "Email must match validation rules."
+    },
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "VALIDATION.WEAK_PASSWORD",
+        "message": "Password must be at least 8 characters long and include letters and numbers."
+      },
+      "_developerHint": "Enforce strong password policy at API level."
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EMAIL_ALREADY_EXISTS",
+        "message": "An account with this email already exists."
+      },
+      "_developerHint": "Prevent duplicate accounts. Suggest login instead."
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      },
+      "_developerHint": "Database or auth service is down."
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "Unexpected backend failure."
+    }
+  ]
+}

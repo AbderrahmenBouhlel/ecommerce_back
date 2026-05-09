@@ -1,0 +1,106 @@
+{
+  "endpoint": "GET /api/v1/admin/categories/{category_id}/filters",
+  "description": "Retrieve all filters assigned to a category along with their allowed filter values.",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>"
+    },
+    "params": {
+      "category_id": "long (The ID of the category)"
+    }
+  },
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "CATEGORIES.FILTERS.RETRIEVED",
+        "message": "Category filters retrieved successfully.",
+        "data": [
+          {
+            "id": "long",
+            "name": "string",
+            "slug": "string",
+            "description": "string | null",
+            "is_active": true,
+            "filter_values": [
+              {
+                "id": "long",
+                "value": "string",
+                "slug": "string",
+                "is_active": true,
+                "created_at": "2026-05-08T12:00:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request parameters."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "CATEGORY.NOT_FOUND",
+        "message": "The specified category does not exist."
+      }
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-05-08T12:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

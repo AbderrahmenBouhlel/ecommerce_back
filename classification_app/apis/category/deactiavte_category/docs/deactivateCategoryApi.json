@@ -1,0 +1,96 @@
+{
+  "endpoint": "api/v1/admin/categories/{categoryId}/deactivate",
+  "method": "PATCH",
+  "pathParams": {
+    "categoryId": "long"
+  },
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "CATEGORY.DEACTIVATED",
+        "message": "Category deactivated successfully.",
+        "data": {
+          "categoryId": "long",
+          "isActive": false
+        }
+      },
+      "_developerHint": "Marks the category as inactive."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request. dues to missing or invalid parameters."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "CATEGORY.NOT_FOUND",
+        "message": "Category not found."
+      }
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "CATEGORY.ALREADY_INACTIVE",
+        "message": "Category is already inactive."
+      }
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

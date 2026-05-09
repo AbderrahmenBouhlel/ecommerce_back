@@ -1,0 +1,106 @@
+{
+  "endpoint": "api/v1/admin/filters/{filterId}/activate",
+  "method": "PATCH",
+  "pathParams": {
+    "filterId": "long"
+  },
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.ACTIVATED",
+        "message": "Filter activated successfully.",
+        "data": {
+          "filterId": "long",
+          "isActive": true,
+          "note": "Filter values remain inactive until explicitly reactivated."
+        }
+      },
+      "_developerHint": "Reactivates the filter only. Values must be reactivated individually."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request. dues to missing or invalid parameters."
+      }
+    },
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+
+
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.ALREADY_ACTIVE",
+        "message": "Filter is already active."
+      }
+    },
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.NOT_FOUND",
+        "message": "Filter not found."
+      }
+    },
+
+
+    
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

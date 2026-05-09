@@ -1,0 +1,108 @@
+{
+  "endpoint": "api/v1/admin/filters/create",
+  "method": "POST",
+  "body": {
+    "name": "string",
+    "description": "string"
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.CREATED",
+        "message": "Filter created successfully.",
+        "data": {
+          "id": "long",
+          "name": "string",
+          "description": "string",
+          "slug": "string",
+          "isActive": "boolean",
+          "createdAt": "datetime"
+        }
+      },
+      "_developerHint": "Returned when a new filter is successfully created."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid filter creation request."
+      },
+      "_developerHint": "Triggered when request body validation fails."
+    },
+
+
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      },
+      "_developerHint": "Only admin users can create filters."
+    },
+
+
+
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.NAME_ALREADY_EXISTS",
+        "message": "A filter with this name already exists."
+      },
+      "_developerHint": "Ensures filter names remain unique across system."
+    },
+ 
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "Unexpected server-side failure."
+    }
+
+  ]
+}

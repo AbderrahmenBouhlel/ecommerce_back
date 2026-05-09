@@ -1,0 +1,113 @@
+{
+  "endpoint": "/api/v1/admin/filters/{filterId}",
+  "method": "DELETE",
+  "pathParams": {
+    "filterId": "long"
+  },
+  "queryParams": {
+    "confirm": "boolean"
+  },
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.HARD_DELETED",
+        "message": "Filter and all related data deleted successfully.",
+        "data": {
+          "filterId": "long",
+          "affected": {
+            "filterValues":"long",
+            "products": "long",
+            "categories": "long"
+          }
+        }
+      },
+      "_developerHint": "Returned after successful cascade deletion of filter hierarchy."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request. dues to missing or invalid parameters."
+      },
+      "_developerHint": "Triggered when path or query parameters are malformed."
+    },
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.CONFIRMATION_REQUIRED",
+        "message": "Deletion confirmation is required."
+      },
+      "_developerHint": "Triggered when confirm flag is missing or false."
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      },
+      "_developerHint": "Only admin users can delete filters."
+    },
+
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.NOT_FOUND",
+        "message": "Filter not found."
+      },
+      "_developerHint": "Returned when filterId does not exist."
+    },
+
+
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "Unexpected server failure during cascade deletion."
+    }
+  ]
+}

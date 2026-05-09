@@ -1,0 +1,178 @@
+{
+  "endpoint": "POST /api/v1/admin/products/{id}/variants",
+
+  "description": "Create a new variant (color) for a specific product with associated images.",
+
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>",
+      "Content-Type": "multipart/form-data"
+    },
+
+    "params": {
+      "id": "long (The ID of the parent product)"
+    },
+
+    "body": {
+      "color_name": "string (required, 1-255 chars, e.g., 'Kaki')",
+
+      "color_code": "string (required, valid hex code, e.g., '#69345F')",
+
+      "images": [
+        "File (required, image/jpeg | image/png | image/jpg)"
+      ]
+    },
+
+    "constraints": {
+      "images_required": true,
+      "supported_image_content_types": [
+        "image/jpeg",
+        "image/png",
+        "image/jpg"
+      ],
+      "max_total_payload_size_mb": 10
+    }
+  },
+
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "VARIANT.CREATED",
+        "message": "Product variant created successfully.",
+
+        "data": {
+          "id": "UUID/long",
+          "product_id": "long",
+          "color_name": "string",
+          "color_code": "string",
+          "created_at": "2026-04-29T14:20:00Z",
+
+          "images": [
+            {
+              "id": "UUID",
+              "image_url": "...",
+              "order": 1
+            },
+            {
+              "id": "UUID",
+              "image_url": "...",
+              "order": 2
+            }
+          ]
+        }
+      }
+    }
+  ],
+  
+
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "string"
+      }
+    },
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "VARIANT.UNSUPPORTED_IMAGE_CONTENT_TYPE",
+        "message": "Unsupported image content type ..."
+      }
+    },
+
+ 
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+
+
+
+
+
+
+
+    {
+      "status": 413,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "VARIANT.IMAGES_SIZE_LIMIT_EXCEEDED",
+        "message": "Total uploaded images size exceeds the allowed limit."
+      }
+    },
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "PRODUCT.NOT_FOUND",
+        "message": "The product you are trying to add a variant to does not exist."
+      }
+    },
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-29T14:20:00Z",
+        "code": "VARIANT.DUPLICATE_COLOR_NAME_IN_PRODUCT",
+        "message": "A variant with this color name already exists for this product."
+      }
+    },
+
+
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

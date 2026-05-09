@@ -1,0 +1,2 @@
+from .activate_category_request import ActivateCategoryRequestDTO
+from .activate_category_response import ActivateCategoryResponseDTO

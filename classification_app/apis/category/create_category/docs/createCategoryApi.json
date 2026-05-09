@@ -1,0 +1,110 @@
+{
+  "endpoint": "api/v1/admin/categories/create",
+  "method": "POST",
+  "body": {
+    "name": "string",
+    "gender": "string (MALE | FEMALE)",
+    "description": "string"
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "CATEGORY.CREATED",
+        "message": "Category created successfully.",
+        "data": {
+          "id": "long",
+          "name": "string",
+          "gender": "string",
+          "slug": "string",
+          "description": "string",
+          "isActive": "boolean",
+          "createdAt": "datetime"
+        }
+      },
+      "_developerHint": "Category successfully persisted. Slug is auto-generated from name and gender if not provided."
+    }
+  ],
+   "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid category creation request."
+      },
+      "_developerHint": "Triggered when request body validation fails."
+    },
+
+
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      },
+      "_developerHint": "Only admin users can create categories."
+    },
+
+
+
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "CATEGORY.NAME_ALREADY_EXISTS",
+        "message": "A category with this name already exists for this gender."
+      },
+      "_developerHint": "Ensures the (name, gender) combination remains unique across system. Categories may share a name across different genders."
+    },
+ 
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "Unexpected server-side failure."
+    }
+
+  ]
+}

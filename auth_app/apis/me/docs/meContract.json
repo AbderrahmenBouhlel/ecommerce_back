@@ -1,0 +1,76 @@
+{
+  "endpoint": "api/v1/auth/me",
+  "method": "GET",
+  "auth": "Bearer JWT access token",
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.SESSION_ACTIVE",
+        "message": "Authenticated user session.",
+        "data": {
+          "userProfile": {
+            "id": "long",
+            "email": "string",
+            "name": "string",
+            "role": "string"
+          }
+        }
+      },
+      "_developerHint": "Returned when middleware successfully authenticated request."
+    }
+  ],
+  "errors": [
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+
+    
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.USER_INACTIVE",
+        "message": "User account is disabled."
+      }
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+
+from .error_mapper import GetCategoryAllowedFiltersErrorMapper

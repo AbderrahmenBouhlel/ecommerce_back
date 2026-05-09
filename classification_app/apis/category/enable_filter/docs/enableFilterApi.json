@@ -1,0 +1,107 @@
+{
+    "endpoint": "api/v1/admin/categories/{categoryId}/filters/{filterId}/enable",
+    "method": "POST",
+    "pathParams": {
+        "categoryId": "long",
+        "filterId": "long"
+    },
+    "success": [
+        {
+            "status": 201,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "CATEGORY_FILTER.ENABLED",
+                "message": "Filter enabled for category successfully.",
+                "data": {
+                    "categoryId": "long",
+                    "filterId": "long"
+                }
+            },
+            "_developerHint": "Creates or re-enables the association between a filter and a category. Products can now be tagged with values from this filter."
+        }
+    ],
+    "errors": [
+        {
+            "status": 400,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "REQUEST.INVALID",
+                "message": "Invalid request parameters."
+            }
+        },
+
+
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.MISSING_TOKEN",
+                "message": "Authentication token is required."
+            }
+        },
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.EXPIRED_TOKEN",
+                "message": "Authentication token has expired."
+            }
+        },
+        {
+            "status": 401,
+            "body": {
+                "timestamp": "2026-01-21T13:00:00Z",
+                "code": "AUTH.INVALID_TOKEN",
+                "message": "Invalid authentication token."
+            }
+        },
+
+        {
+            "status": 403,
+            "body": {
+                "timestamp": "2026-04-17T13:00:00Z",
+                "code": "AUTH.UNAUTHORIZED_ACTION",
+                "message": "You are not allowed to perform this action."
+            },
+            "_developerHint": "Only admin users can create filters."
+        },
+
+
+
+
+
+        {
+            "status": 404,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "CATEGORY.NOT_FOUND",
+                "message": "The specified category does not exist."
+            }
+        },
+        {
+            "status": 404,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "FILTER.NOT_FOUND",
+                "message": "The specified filter does not exist."
+            }
+        },
+        {
+            "status": 409,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "CATEGORY_FILTER.ALREADY_ENABLED",
+                "message": "This filter is already enabled for this category."
+            },
+            "_developerHint": "Prevents duplicate active associations."
+        },
+        {
+            "status": 500,
+            "body": {
+                "timestamp": "2026-04-26T14:15:00Z",
+                "code": "SYSTEM.INTERNAL_ERROR",
+                "message": "Internal server error."
+            }
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+  "endpoint": "api/v1/admin/categories/light",
+  "method": "GET",
+
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-05-04T12:00:00Z",
+        "code": "CATEGORIES.SELECT.RETRIEVED",
+        "message": "Categories retrieved successfully for selection.",
+        "data": [
+          {
+            "id": "long",
+            "name": "string",
+            "gender": "string (MALE|FEMALE)",
+            "slug": "string",
+            "isActive": "boolean"
+          }
+        ]
+      },
+      "_developerHint": "Lightweight projection of categories for dropdowns, filters, and form controls. No relational or nested data included."
+    }
+  ],
+
+  "errors": [
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-20T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to access category selection data."
+      }
+    },
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-20T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

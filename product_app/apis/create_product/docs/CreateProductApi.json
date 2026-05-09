@@ -1,0 +1,122 @@
+{
+  "endpoint": "POST /api/v1/admin/products",
+  "description": "Create a new draft product.",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "string (required, 3-255 chars)",
+      "description": "string (optional, max 2000 chars)",
+      "price": "number (required, >= 0, max 2 decimal places)",
+      "categoryId": "long (required)"
+    }
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "PRODUCT.CREATED",
+        "message": "Draft product created successfully.",
+        "data": {
+          "id": "long",
+          "status": "DRAFT",
+          "name": "string",
+          "description": "string",
+          "price": "number",
+          "categoryId": "long",
+          "createdAt": "ISO-8601 timestamp"
+        }
+      }
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "string"
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+
+
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "CATEGORY.NOT_FOUND",
+        "message": "The specified category does not exist."
+      }
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "CATEGORY.INACTIVE",
+        "message": "Cannot assign product to an inactive category."
+      }
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "PRODUCT.DUPLICATE_NAME",
+        "message": "A product with this name already exists."
+      }
+    },
+    
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

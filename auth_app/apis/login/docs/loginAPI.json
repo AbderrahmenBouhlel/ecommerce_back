@@ -1,0 +1,76 @@
+{
+    "endpoint": "api/v1/auth/sessions",
+    "method": "POST",
+    "body": {
+      "email": "string",
+      "password": "string"
+    },
+    "success": [
+      {
+        "status": 200,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "AUTH.LOGIN_SUCCESS",
+          "message": "Login completed successfully.",
+          "data": {
+            "token": "string",
+            "userProfile": {
+              "id": "long",
+              "email": "string",
+              "name": "string",
+              "role": "string"
+            }
+          }
+        },
+        "_developerHint": "Returned when authentication completed successfully. Token and user profile are available."
+      }
+    ],
+    "errors": [
+      {
+        "status": 400,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "REQUEST.INVALID",
+          "message": "Invalid Login request"
+        },
+        "_developerHint": "Covers invalid requests."
+      },
+      {
+        "status": 401,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "AUTH.INVALID_CREDENTIALS",
+          "message": "Invalid credentials."
+        },
+        "_developerHint": "Returned when credentials are invalid. Either the user does not exist or the password is incorrect."
+      },
+      {
+        "status": 403,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "AUTH.USER_INACTIVE",
+          "message": "Access denied."
+        },
+        "_developerHint": "Returned when the user account exists but is disabled ."
+      },
+      {
+        "status": 503,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "SYSTEM.SERVICE_UNAVAILABLE",
+          "message": "Service temporarily unavailable."
+        },
+        "_developerHint": "Returned when the server or one of its dependencies (e.g., database) is temporarily unavailable."
+      },
+      {
+        "status": 500,
+        "body": {
+          "timestamp": "2026-01-21T13:00:00Z",
+          "code": "SYSTEM.INTERNAL_ERROR",
+          "message": "Internal server error."
+        },
+        "_developerHint": "Returned when an unexpected internal error occurs within the server."
+      }
+    ]
+  }
+  

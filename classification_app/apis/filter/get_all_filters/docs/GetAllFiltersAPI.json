@@ -1,0 +1,88 @@
+{
+  "endpoint": "api/v1/admin/filters",
+  "method": "GET",
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-04-20T13:00:00Z",
+        "code": "FILTERS.RETRIEVED",
+        "message": "Filters retrieved successfully.",
+        "data": [
+          {
+            "id": "long",
+            "name": "string",
+            "slug": "string",
+            "description": "string",
+            "isActive": "boolean",
+            "createdAt": "datetime",
+            "values": [
+              {
+                "id": "long",
+                "name": "string",
+                "slug": "string",
+                "description": "string",
+                "isActive": "boolean",
+                "createdAt": "datetime"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-20T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+    
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-20T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

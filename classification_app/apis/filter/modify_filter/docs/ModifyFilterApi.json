@@ -1,0 +1,114 @@
+{
+  "endpoint": "api/v1/admin/filters/{filterId}",
+  "method": "PATCH",
+  "pathParams": {
+    "filterId": "long"
+  },
+  "body": {
+    "name": "string (optional)",
+    "description": "string (optional)"
+  },
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.UPDATED",
+        "message": "Filter updated successfully.",
+        "data": {
+          "id": "long",
+          "name": "string",
+          "slug": "string",
+          "description": "string",
+          "isActive": "boolean",
+          "updatedAt": "datetime"
+        }
+      },
+      "_developerHint": "Updates name and/or description. Slug is automatically regenerated if name changes."
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request. dues to missing or invalid parameters."
+      },
+      "_developerHint": "Triggered when request validation fails."
+    },
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Authentication token is invalid."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      },
+      "_developerHint": "Only admin users can update filters."
+    },
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.NOT_FOUND",
+        "message": "Filter not found."
+      },
+      "_developerHint": "Returned when the filterId does not exist."
+    },
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "FILTER.ALREADY_EXISTS",
+        "message": "A filter with this name already exists."
+      },
+      "_developerHint": "Triggered by unique constraint on filter name."
+    },
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-17T13:00:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      },
+      "_developerHint": "Unexpected server failure."
+    }
+  ]
+}

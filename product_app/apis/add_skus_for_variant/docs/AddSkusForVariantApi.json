@@ -1,0 +1,133 @@
+{
+  "endpoint": "POST /api/v1/admin/variants/{variant_id}/skus",
+  "description": "Add one or more SKUs (size/stock) to a specific variant.",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>",
+      "Content-Type": "application/json"
+    },
+    "params": {
+      "variant_id": "UUID/long"
+    },
+    "body": {
+      "skus": [
+        {
+          "size": "string (e.g., 'L', '42', 'XL')",
+          "stock": "integer (min: 0)"
+        }
+      ]
+    }
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-05-01T10:45:00Z",
+        "code": "SKU.CREATED",
+        "message": "SKUs successfully added to the variant.",
+        "data": [
+          {
+            "id": "UUID",
+            "size": "L",
+            "stock": 25,
+            "reserved": 0,
+            "sku_code": "TSHIRT-M-RED"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "string"
+      }
+    },
+
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+
+
+
+
+
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "RESOURCE.NOT_FOUND",
+        "message": "The specified variant does not exist."
+      }
+    },
+
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "PRODUCT.ARCHIVED",
+        "message": "Cannot add SKUs to a variant belonging to an archived product."
+      }
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SKU.DUPLICATE_SIZE_IN_VARIANT",
+        "message": "A SKU with the same size {size} already exists for this variant."
+      }
+    },
+    
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

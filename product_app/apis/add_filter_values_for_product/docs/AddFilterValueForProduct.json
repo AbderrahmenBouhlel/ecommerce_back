@@ -1,0 +1,126 @@
+{
+  "endpoint": "POST /api/v1/admin/products/{product_id}/filter-values",
+  "description": "Assign one or more filter values to a specific product.",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer <token>",
+      "Content-Type": "application/json"
+    },
+    "params": {
+      "product_id": "UUID/long"
+    },
+    "body": {
+      "filter_values": [
+        {
+          "filter_value_id": "long"
+        }
+      ]
+    }
+  },
+  "success": [
+    {
+      "status": 201,
+      "body": {
+        "timestamp": "2026-05-01T10:45:00Z",
+        "code": "PRODUCT_FILTER_VALUE.CREATED",
+        "message": "Filter values successfully assigned to the product.",
+        "data": [
+          {
+            "id": "UUID",
+            "product_id": "long",
+            "filter_value_id": "long",
+            "filter_value_name": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "string"
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.MISSING_TOKEN",
+        "message": "Authentication token is required."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.EXPIRED_TOKEN",
+        "message": "Authentication token has expired."
+      }
+    },
+    {
+      "status": 401,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.INVALID_TOKEN",
+        "message": "Invalid authentication token."
+      }
+    },
+    {
+      "status": 403,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "AUTH.UNAUTHORIZED_ACTION",
+        "message": "You are not allowed to perform this action."
+      }
+    },
+
+
+
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "PRODUCT.NOT_FOUND",
+        "message": "The specified product does not exist."
+      }
+    },
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "FILTER_VALUE.NOT_FOUND",
+        "message": "One or more filter values do not exist."
+      }
+    },
+    {
+      "status": 409,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "FILTER_VALUE.NOT_ALLOWED_FOR_CATEGORY",
+        "message": "One or more filter values are not allowed for this product category."
+      }
+    },
+
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-01-21T13:00:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-04-29T14:15:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}
