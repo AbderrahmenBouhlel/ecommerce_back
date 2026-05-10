@@ -1,4 +1,5 @@
 
+from django.conf import settings
 from django.urls import resolve
 from django.http import JsonResponse
 from core.apiResponse.response import ApiCode, ApiResponse
@@ -10,6 +11,10 @@ class RBACMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        
+         # Skip media files
+        if request.path.startswith(settings.MEDIA_URL):
+            return self.get_response(request)
 
         try:
             view_func = resolve(request.path_info).func

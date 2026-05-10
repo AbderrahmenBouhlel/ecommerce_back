@@ -3,6 +3,7 @@ from auth_app.services.jwt import JWTService, JWTPayload
 from auth_app.models import User
 from auth_app.repos.UserRespository import user_repository
 from django.http import JsonResponse
+from config import settings
 from core.apiResponse.response import ApiResponse,ApiCode
 from core.exceptions.excecptions import ServerUnavailableException
 from typing import  Generic, TypeVar
@@ -25,6 +26,11 @@ class JWTAuthMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        
+         # Skip media files
+        if request.path.startswith(settings.MEDIA_URL):
+            return self.get_response(request)
+        
         try:
             match = resolve(request.path_info)
             view_func = match.func

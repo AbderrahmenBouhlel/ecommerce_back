@@ -1,0 +1,107 @@
+{
+  "endpoint": "GET /api/v1/products/categories/{category_slug}/catalog",
+  "description": "Retrieve category catalog by slug: active products in that category and filter values used by at least one of those products.",
+
+  "request": {
+    "headers": {
+      "Accept": "application/json"
+    },
+
+    "params": {
+      "category_slug": "string (required, category slug, e.g., 'mens-shoes')"
+    },
+
+    "constraints": {
+      "products_scope": "Only active products are returned.",
+      "filter_values_scope": "Only filter values linked to at least one returned product are returned.",
+      "filter_values_distinct": true
+    }
+  },
+
+  "success": [
+    {
+      "status": 200,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "CATALOG.RETRIEVED",
+        "message": "Category catalog retrieved successfully.",
+
+        "data": {
+          "products": [
+            {
+              "id": "long",
+              "name": "string",
+              "slug": "string",
+              "price": "number",
+              "cover_image_url": "string",
+              "hover_image_url": "string",
+              "is_active": true,
+              "filter_values": [
+                {
+                  "id": "long",
+                  "name": "string",
+                  "slug": "string"
+                }
+              ]
+            }
+          ],
+
+          "filter_values": [
+            {
+              "id": "long",
+              "name": "string",
+              "slug": "string"
+            }
+          ]
+        }
+      }
+    }
+  ],
+
+  "errors": [
+    {
+      "status": 400,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "REQUEST.INVALID",
+        "message": "Invalid request parameters."
+      }
+    },
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "CATEGORY.NOT_FOUND",
+        "message": "The specified category does not exist."
+      }
+    },
+
+    {
+      "status": 404,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "CATEGORY.INACTIVE",
+        "message": "The specified category is inactive."
+      }
+    },
+
+    {
+      "status": 503,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "SYSTEM.SERVICE_UNAVAILABLE",
+        "message": "Service temporarily unavailable."
+      }
+    },
+
+    {
+      "status": 500,
+      "body": {
+        "timestamp": "2026-05-10T14:20:00Z",
+        "code": "SYSTEM.INTERNAL_ERROR",
+        "message": "Internal server error."
+      }
+    }
+  ]
+}

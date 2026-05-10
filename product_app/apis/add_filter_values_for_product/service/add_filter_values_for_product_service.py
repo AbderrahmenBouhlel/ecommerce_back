@@ -65,10 +65,23 @@ class AddFilterValuesForProductService:
             except Exception as e:
                 # Don't fail the operation if embedding generation fails; log and continue.
                 print(f"Embedding generation failed: {e}")
+                
+            # Update product active status based on the presence of variants and filter values
+            self.__update_product_active_status(product)
 
             return result_dto
 
         except Exception as e:
+            raise e
+
+    def __update_product_active_status(self, product: Product):
+        try:
+            product.active = product.variants.exists() and product.filter_values.exists()
+            product.save(update_fields=["active"])
+        except OperationalError as e:
+            raise ServerUnavailableException(message="Service temporarily unavailable.", cause=e)
+        except Exception as e:
+            print(f"Failed to update product active status: {e}")
             raise e
 
     def __find_product_and_lock(self, product_id: int) -> Product:
